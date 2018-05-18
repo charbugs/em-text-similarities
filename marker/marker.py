@@ -46,7 +46,9 @@ def get_setup():
                 'id': 'min_n',
                 'type': 'text'
             }
-        ]
+        ],
+	    'supportedLanguages': 'German',
+	    'homepage': 'https://github.com/charbugs/em-text-similarities'
     }
 
 def get_markup(markup_request):
