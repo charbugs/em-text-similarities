@@ -121,7 +121,7 @@ def get_html_from_url(possible_urls):
         return resp.text
 
 def get_text_from_html(html):
-    text_nodes = BeautifulSoup(html, 'lxml').find('body').find_all(string=True)
+    text_nodes = BeautifulSoup(html).find('body').find_all(string=True)
     text_nodes = filter(is_relevant_text_node, text_nodes)
     text_nodes = map(lambda node: node.strip(), text_nodes)
     return u' '.join(text_nodes)
