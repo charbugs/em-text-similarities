@@ -2,6 +2,5 @@
 
 MARKER_NAME=em-text-similarities
 
-cd ~/github/$MARKER_NAME/server
-sudo ~/.local/bin/uwsgi \
-	--stop /tmp/$MARKER_NAME.pid
+cd /home/charbugs/github/$MARKER_NAME/server
+uwsgi --stop /tmp/$MARKER_NAME.pid
