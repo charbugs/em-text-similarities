@@ -7,13 +7,13 @@ import itertools
 
 DESCRIPTION = """<div>
     This marker highlights <b>text similarities</b> between this
-    web page and another to compare with. It will also show snippets 
+    web page and another web page. It will also show snippets 
     of the corresponding text parts of the other page.
 </div>"""
 
 REPORT = """<div>
     Click the highlighted text (if any) to see the corresponding parts 
-    of the web page to compare with.
+    of the other web page.
 </div>"""
 
 POPUP_CONTENT ="""<div>
@@ -37,7 +37,7 @@ def get_setup():
         'description': DESCRIPTION,
         'inputs': [
             {
-                'label': 'URL of page to compare with',
+                'label': 'URL of other the web page',
                 'id': 'target_url',
                 'type': 'text'
             },
@@ -54,13 +54,15 @@ def get_setup():
 def get_markup(markup_request):
 
     source_tokens = markup_request['tokens']
+    target_url = markup_request['inputs']['target_url']
+
+    if not target_url:
+        return { 'error': 'You should give me an URL.'}
 
     try:
         min_n = parse_positive_int(markup_request['inputs']['min_n'])
     except ValueError:
         return { 'error': 'Span must be an positive integer.'}
-
-    target_url = markup_request['inputs']['target_url']
     
     try:
         target_tokens = get_target_tokens(target_url)
